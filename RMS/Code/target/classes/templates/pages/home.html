@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Recruitment Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+  <div th:insert="pages/nav :: nav">  </div>
+	<div class="container text-center">
+	 	<div >
+	 		<h1>Welcome  - [[${#request.userPrincipal.principal.fullName}]]</h1>
+	 		
+			
+			
+			
+		</div>
+		</br></br></br></br></br></br></br>
+		<div >
+			<td sec:authorize="hasAnyAuthority('ADMINISTRATOR')"><h5 align="left" ><a th:href="@{/user/list_users}">User List</a></h5></td>
+ 			<td sec:authorize="hasAnyAuthority('ADMINISTRATOR','AGENCY_USER')"><h5 align="left" ><a th:href="@{/resume/list_resume}">Resume List</a></h5></td>
+ 			<td sec:authorize="hasAnyAuthority('JOB_SEEKER')"><h5 align="left" ><a th:href="@{/resume/getmyresume}">My Resume</a></h5></td>
+ 			<td sec:authorize="hasAnyAuthority('JOB_SEEKER')"><h5 align="left" ><a th:href="@{/resume/createResume}">Create New Resume</a></h5></td>
+ 			<td sec:authorize="hasAnyAuthority('ADMINISTRATOR','AGENCY_USER')"><h5 align="left" ><a th:href="@{/resume/search_resume}">Resume Search List</a></h5></td>
+ 			
+ 			
+ 		</div>
+ 	</div>
+</body>
+</html>

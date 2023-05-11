@@ -1,0 +1,30 @@
+server:
+  port: 9002
+
+
+spring:
+  application:
+    name: rms
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/RMS?useSSL=false
+    username: root
+    password: anu1312anu
+    allowPublicKeyRetrieval: true
+    useSSL: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        
+      
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+  mvc:    view:      suffix: .html
+    hiddenmethod:      filter:        enabled: true

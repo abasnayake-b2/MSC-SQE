@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Recruitment Management System</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+
+<script type="text/javascript">
+function popup(mylink, windowname) { 
+	
+	if (! window.focus)
+		return true; 
+	var href; 
+	if (typeof(mylink) == 'string') 
+		href=mylink; 
+	else 
+		href=mylink.href;
+	window.open(href, windowname, 'width=900,height=1000,scrollbars=yes,resizable=no'); 
+	
+	return false; }
+
+
+</script>
+</head>
+<body><div th:insert="pages/nav :: nav">  </div>
+	<div class="container text-center">
+	 	<div >
+	 		<h1>Resume List</h1>
+		</div>
+	
+		<div>
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr><th>ID</th>
+						<th>Name</th>
+						<th>E-mail</th>
+						<th>gender</th>
+						<th>profession</th>
+						<th >Action</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="resume: ${listResume}">
+						<td th:text="${resume.id}"></td>
+						<td th:text="${resume.name}"></td>
+						<td th:text="${resume.email}"></td>
+						<td th:text="${resume.gender}"></td>
+						<td th:text="${resume.profession}"></td>
+						<td><span  sec:authorize="hasAnyAuthority('ADMINISTRATOR')"><a th:href="@{/resume/createResume}">Edit</a>&nbsp;&nbsp;
+						 <a th:href="@{'/resume/deleteResume/'+${resume.id}}">Delete</a></span>&nbsp;&nbsp;  <a th:href="@{'/resume/viewResume/'+${resume.id}}" onClick="return popup(this, '')">View</a>&nbsp;&nbsp;
+						<a th:href="@{'/resume/createpdf/'+${resume.id}}" >Download</a></td>
+						
+					</tr>
+				</tbody>
+			
+			</table>
+		</div>
+
+ 	</div>
+</body>
+</html>

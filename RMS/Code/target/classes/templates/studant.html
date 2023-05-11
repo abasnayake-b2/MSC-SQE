@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Student Details</title>
+
+
+</head>
+
+<body>
+
+	<img class="logo" src="images/logo.png" />
+
+	<div>
+
+		<p>
+			Student id : <span th:text="${ID}"></span>
+		</p>
+
+		<p>
+			First Name : <span th:text="${firstName}"></span>
+		</p>
+
+		<p>
+			Last Name : <span th:text="${lastName}"></span>
+		</p>
+
+		<p>
+			Class : <span th:text="${class}"></span>
+		</p>
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Recruitment Management System</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css">
+
+
+<script type="text/javascript">
+	function popup(mylink, windowname) {
+
+		if (!window.focus)
+			return true;
+		var href;
+		if (typeof (mylink) == 'string')
+			href = mylink;
+		else
+			href = mylink.href;
+		window.open(href, windowname,
+				'width=900,height=1000,scrollbars=yes,resizable=no');
+
+		return false;
+	}
+</script>
+</head>
+<body>
+	<div th:insert="pages/nav :: nav"></div>
+	<div class="container text-center">
+		<div>
+			<h1>Search Resume</h1>
+		</div>
+
+		<div>
+			<div>
+				<div
+					class="col-lg-10 col-md-6 col-sm-6 container justify-content-left card">
+					<div>
+						<form th:action="@{/resume/search_resume}" method="get"
+							th:object="${searchCriterion}">
+							<table>
+								<thead class="thead-dark">
+									<tr>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody align="left">
+
+									<tr>
+										<td><label>Prefered Job Sector </label></td>
+										<td>
+									<select th:field="*{sjobSector}" class="form-control">
+											<option th:text="*{sjobSector}" value="*{sjobSector}"  ></option>
+											<option th:each="jobSectors : ${jobSectors}"
+												th:value="${jobSectors.sector}"
+												th:text="${jobSectors.sector}"></option>
+										</select>
+										</td>
+									</tr>
+									<tr><td>
+									<label>Education Level </label>
+									</td>
+									<td>
+									<select th:field="*{seducationLevel}" class="form-control">
+										<option th:text="*{seducationLevel}"
+											value="*{seducationLevel}"></option>
+										<option th:each="educationLevels : ${educationLevels}"
+											th:value="${educationLevels.level}"
+											th:text="${educationLevels.level}"></option>
+									</select>
+									</td>
+									</tr>
+								
+									<tr> 
+									<td>
+									<label>G.C.E O/L</label>
+									</td>
+									<td>	
+									<select th:field="*{snumberOfOLPasses}" class="form-control">
+										<option th:text="*{snumberOfOLPasses}"
+											value="*{snumberOfOLPasses}"></option>
+										<option th:each="numberofOlPasses : ${numberofOlPasses}"
+											th:value="${numberofOlPasses.number}"
+											th:text="${numberofOlPasses.number}"></option>
+									</select>
+									</td>
+									</tr>
+							
+									<tr> 
+									<td>
+									<label>G.C.E A/L</label>
+									</td>
+									<td>
+									<select th:field="*{snumberOfALPasses}" class="form-control">
+										<option th:text="*{snumberOfALPasses}"
+											value="*{snumberOfALPasses}"></option>
+										<option th:each="numberofAlPasses : ${numberofAlPasses}"
+											th:value="${numberofAlPasses.number}"
+											th:text="${numberofAlPasses.number}"></option>
+									</select>
+									</td>
+									</tr>
+									<tr>  
+									<td><label> Higher Education and Professional Qualification
+									</label>
+									</td>
+									<td><input type="text" name="sprofQaualification"
+										th:field="*{sprofQaualification}" class="form-control"
+										placeholder="Enter the qualification" /></td>
+									</br>
+									</tr>
+									<tr>	
+									<td>
+									<label>Experience</label>
+									</td>
+									<td><input type="text" name="sdesignation"
+										th:field="*{sdesignation}" class="form-control"
+										placeholder="Enter experience" /></td>
+									</br>
+									</tr>
+									<tr>
+									<td>
+									<label> Skills</label>
+									</td>
+									<td><input type="text" name="sskill" th:field="*{sskill}"
+										class="form-control" placeholder="Enter skill" /></td>
+									</br>
+									</tr>
+									     
+							
+								</tbody>	
+							</table> 	
+							</br>
+		   				<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Search</button>
+						</div>
+							</br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</br>
+		
+		
+		
+		<div>
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>E-mail</th>
+						<th>gender</th>
+						<th>profession</th>
+						<th>Action</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="resume: ${listResume}">
+						<td th:text="${resume.id}"></td>
+						<td th:text="${resume.name}"></td>
+						<td th:text="${resume.email}"></td>
+						<td th:text="${resume.gender}"></td>
+						<td th:text="${resume.profession}"></td>
+						<td><a	th:href="@{'/resume/viewResume/'+${resume.id}}"	onClick="return popup(this, '')">View</a>
+						 &nbsp;&nbsp;<a th:href="@{'/resume/createpdf/'+${resume.id}}">Download</a></td>
+						
+					</tr>
+				</tbody>
+			
+			</table>
+		</div>
+
+ 	</div>
+</body>
+</html>

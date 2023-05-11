@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Recruitment Management System</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+</head>
+<body> <div th:insert="pages/nav :: nav">  </div>
+	<div class="container text-center">
+		
+	 	<div >
+	 		<h1>User List</h1>
+		</div>
+		<div >
+	 			<td sec:authorize="hasAnyAuthority('ADMINISTRATOR')"><a th:href="@{/user/userCreate}"> Create New User </a></td>
+	 				
+		</div>
+		<div>
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>User ID</th>
+						<th>E-mail</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Roles</th>
+						<th sec:authorize="hasAnyAuthority('ADMINISTRATOR')">Action</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user: ${listUsers}">
+						<td th:text="${user.id}"></td>
+						<td th:text="${user.emailId}"></td>
+						<td th:text="${user.firstName}"></td>
+						<td th:text="${user.lastName}"> </td>
+						<td th:text="${user.roles}"></td>
+						<td sec:authorize="hasAnyAuthority('ADMINISTRATOR')"><a th:href="@{'/user/edituser/'+${user.id}}">edit</a>
+						<a th:href="@{'/user/deleteUser/'+${user.id}}">delete</a></td>
+					</tr>
+				</tbody>
+			
+			</table>
+		</div>
+
+ 	</div>
+</body>
+</html>

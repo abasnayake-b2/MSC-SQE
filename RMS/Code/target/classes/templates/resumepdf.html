@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Recruitment Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous"></link>
+</head>
+
+
+<body>
+	<br>
+	</br>
+	<br>
+	</br>
+
+	<div>
+		<div class="row">
+			<div
+				class="col-lg-10 col-md-6 col-sm-6 container justify-content-center card">
+				<div class="card-body">
+
+
+					<h1 class="text-center">
+						<span th:text="*{resume.name}"></span>
+					</h1>
+					<h4 class="text-center">
+						<span th:text="*{resume.profession}"></span>
+					</h4>
+					<h6 class="text-center">
+						<span th:text="*{resume.email}"></span>
+					</h6>
+					<h6 class="text-center">
+						<span th:text="*{resume.teleno}"></span>
+					</h6>
+
+					<div class="form-group">
+						<hr />
+						<h3>Summary</h3>
+						<span th:text="*{resume.summary}"></span><br /> <br></br>
+
+						<hr />
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tr>
+								<td><B>Years of Experience </B></td>
+								<td>: <span th:text="*{resume.yoe}"></span> Years
+								</td>
+							</tr>
+							<tr>
+								<td><B>Prefered Job Sector </B></td>
+								<td>: <span th:text="*{resume.sector}"></span></td>
+							</tr>
+							<tr>
+								<td><B>Education Level </B></td>
+								<td>: <span th:text="*{resume.elevel}"></span></td>
+							</tr>
+							<tr>
+								<td><B>Gender </B></td>
+								<td>: <span th:text="*{resume.gender}"></span></td>
+							</tr>
+						</table>
+						<br></br>
+
+						<hr />
+						<h3>Education Qualification</h3>
+						<br></br>
+						<h6>G.C.E O/L</h6>
+						<tr th:each="ols, stat: *{resume.ols}">
+							<td><span th:text="*{resume.ols[__${stat.index}__].college}"></span>
+							</td>
+							<br></br>
+
+							<td><span></span> : <span
+								th:text="*{resume.ols[__${stat.index}__].a}"></span>A <span
+								th:text="*{resume.ols[__${stat.index}__].b}"></span>B <span
+								th:text="*{resume.ols[__${stat.index}__].c}"></span>C</td>
+
+						</tr>
+						<br></br>
+						<h6>G.C.E A/L</h6>
+						<tr th:each="als, stat: *{resume.als}">
+							<td><span th:text="*{resume.als[__${stat.index}__].college}"></span>
+							</td>
+
+							<td><span></span>: <span
+								th:text="*{resume.als[__${stat.index}__].a}"></span>A <span
+								th:text="*{resume.als[__${stat.index}__].b}"></span>B <span
+								th:text="*{resume.als[__${stat.index}__].c}"></span>C</td>
+
+						</tr>
+						<br></br>
+
+						<hr></hr>
+						<h3>Professional Qualification</h3>
+						<br></br>
+						<tr th:each="education, stat: *{resume.educations}">
+							<h6>
+								<span
+									th:text="*{resume.educations[__${stat.index}__].qualification}"></span>
+							</h6>
+							<td><span
+								th:text="*{resume.educations[__${stat.index}__].college}"></span></td>
+							<br></br>
+							<td><span
+								th:text="*{resume.educations[__${stat.index}__].summary}"></span></td>
+							<br></br>
+							<td><span
+								th:text="*{resume.educations[__${stat.index}__].year}"></span></td>
+
+						</tr>
+						<br></br>
+						<hr></hr>
+						<h3>Experience</h3>
+						<br></br>
+						<tr th:each="job, stat: *{resume.jobs}">
+							<h6>
+								<span th:text="*{resume.jobs[__${stat.index}__].designation}"></span>
+							</h6>
+							<td><span
+								th:text="*{resume.jobs[__${stat.index}__].company}"></span> ( <span
+								th:text="*{resume.jobs[__${stat.index}__].startDate}"></span> -
+								<span th:text="*{resume.jobs[__${stat.index}__].endDate}"></span>)
+							</td>
+
+							<td><span
+								th:text="*{resume.jobs[__${stat.index}__].summary}"></span></td>
+						</tr>
+						<br></br>
+						<hr></hr>
+					
+						
+						<h3>Skills</h3>
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tr th:each="skill, stat: *{resume.skills}">
+								<td><B><span
+										th:text="*{resume.skills[__${stat.index}__].skill}"></span></B></td>
+								<td>- <span th:text="*{resume.skills[__${stat.index}__].level}"></span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
